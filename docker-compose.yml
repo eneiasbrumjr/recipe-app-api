@@ -24,7 +24,7 @@ services:
 
 
   db:
-    image: postgres:13.2-alpine
+    image: postgres:13-alpine
     hostname: postgres
     ports:
       - "5432:5432"
