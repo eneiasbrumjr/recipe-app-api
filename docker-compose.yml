@@ -25,6 +25,10 @@ services:
 
   db:
     image: postgres:13.2-alpine
+    hostname: postgres
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
     volumes:
       - dev-db-data:/var/lib/postgresql/data/
     environment:
