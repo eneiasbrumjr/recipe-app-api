@@ -30,7 +30,7 @@ services:
     hostname: postgres
     ports:
       - "5432:5432"
-    restart: unless-stopped
+    restart: always
     volumes:
       - dev-db-data:/var/lib/postgresql/data/
     environment:
