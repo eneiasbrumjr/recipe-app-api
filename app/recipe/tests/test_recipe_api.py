@@ -211,7 +211,7 @@ class PrivateRecipeApiTests(TestCase):
             'price': Decimal('2.50'),
             'tags': [{'name': 'Thai'}, {'name': 'Dinner'}],
         }
-        res = self.client.post(RECIPES_URL, payload, format= 'json')
+        res = self.client.post(RECIPES_URL, payload, format='json')
 
         self.assertEqual(res.status_code, status.HTTP_201_CREATED)
         recipes = Recipe.objects.filter(user=self.user)
@@ -220,7 +220,7 @@ class PrivateRecipeApiTests(TestCase):
         self.assertEqual(recipe.tags.count(), 2)
         for tag in payload['tags']:
             exists = recipe.tags.filter(
-                name=tag[''],
+                name=tag['name'],
                 user=self.user,
             ).exists()
             self.assertTrue(exists)
@@ -232,16 +232,16 @@ class PrivateRecipeApiTests(TestCase):
             'title': 'Pongal',
             'time_minutes': 60,
             'price': Decimal('4.50'),
-            'tags': [{'name':'Indian'}, {'name': 'Breakfast'}],
+            'tags': [{'name': 'Indian'}, {'name': 'Breakfast'}],
         }
         res = self.client.post(RECIPES_URL, payload, format='json')
 
         self.assertEqual(res.status_code, status.HTTP_201_CREATED)
         recipe = Recipe.objects.filter(user=self.user)
-        self.assertEqual(recipes.count(), 1)
+        self.assertEqual(recipe.count(), 1)
         recipe = recipe[0]
         self.assertEqual(recipe.tags.count(), 2)
-        self.assertIn(tag_indian, recipe.tag.all())
+        self.assertIn(tag_indian, recipe.tags.all())
         for tag in payload['tags']:
             exists = recipe.tags.filter(
                 name=tag['name'],
