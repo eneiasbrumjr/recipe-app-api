@@ -72,7 +72,7 @@ class Tag(models.Model):
     )
 
     def __str__(self):
-        return self.n
+        return self.name
 
 
 class Ingredient(models.Model):
