@@ -72,7 +72,8 @@ class Tag(models.Model):
     )
 
     def __str__(self):
-        return self.name
+        return self.n
+
 
 class Ingredient(models.Model):
     """Ingredient for recipes."""
