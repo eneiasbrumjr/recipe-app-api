@@ -20,7 +20,7 @@ jobs:
         run: docker ps -a
       - name: Create users and give permissions
         run: |
-          adduser \
+          sudo adduser \
           --disabled-password \
           --no-create-home \
           django-user && \
