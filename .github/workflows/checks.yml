@@ -19,6 +19,6 @@ jobs:
       - name: Check running containers
         run: docker ps -a
       - name: Test
-        run: sudo docker-compose run --rm app sh -c "python manage.py wait_for_db && python manage.py test"
+        run: sudo docker-compose run --rm app sh -c "sudo python manage.py wait_for_db && python manage.py test"
       - name: Lint
         run: docker-compose run --rm app sh -c "flake8"
