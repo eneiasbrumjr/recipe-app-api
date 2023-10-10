@@ -27,8 +27,8 @@ RUN python -m venv /py && \
         django-user && \
     chown -R django-user:django-user /app && \
     chmod -R 755 /app && \
-    mkdir -p /vol/web/media && \
-    mkdir -p /vol/web/static && \
+    mkdir -p --mode=755 /vol/web/media && \
+    mkdir -p --mode=755 /vol/web/static && \
     chown -R django-user:django-user /vol && \
     chmod -R 755 /vol
 
