@@ -3,3 +3,4 @@ djangorestframework>=3.12.4,<3.14
 psycopg2>=2.9.8,<2.10
 drf-spectacular==0.17.0,<0.18
 Pillow>=8.2.0,<8.3
+uwsgi>=2.0.19,<2.1
