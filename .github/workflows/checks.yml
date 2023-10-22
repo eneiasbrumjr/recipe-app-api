@@ -17,10 +17,10 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Build
-        run: |
-          docker-compose rm -f -s -v \
-          docker-compose pull
+      - name: Remove containers
+        run: docker-compose rm -f -s -v
+      - name: Pull images
+        run: docker-compose pull
       - name: docker-compose stack up
         run: docker-compose up --build -d
       - name: Check running containers
