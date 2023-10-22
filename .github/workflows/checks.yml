@@ -17,10 +17,6 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Add docker user
-        run: |
-            sudo groupadd docker \
-            sudo usermod -g docker $(whoami)
       - name: Remove containers
         run: docker-compose rm -f -s -v
       - name: Build images
@@ -32,6 +28,6 @@ jobs:
       - name: Check container permissions
         run: docker-compose run --rm app sh -c "ls -la"
       - name: Test
-        run: docker-compose run --rm app sh -c "python manage.py wait_for_db && python manage.py test"
+        run: sudo docker-compose run --rm app sh -c "python manage.py wait_for_db && python manage.py test"
       - name: Lint
         run: docker-compose run --rm app sh -c "flake8"
