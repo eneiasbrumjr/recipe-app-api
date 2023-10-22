@@ -20,7 +20,7 @@ jobs:
       - name: Add docker user
         run: |
             sudo groupadd docker \
-            sudo usermod -aG docker $(whoiam)
+            sudo usermod -aG docker $(whoami)
       - name: Remove containers
         run: docker-compose rm -f -s -v
       - name: Build images
