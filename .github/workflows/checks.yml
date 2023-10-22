@@ -18,9 +18,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Build
-        run: docker-compose build
+        run: |
+          docker-compose rm -f -s -v \
+          docker-compose pull
       - name: docker-compose stack up
-        run: docker-compose up -d
+        run: docker-compose up --build -d
       - name: Check running containers
         run: docker ps -a
       - name: Check container permissions
