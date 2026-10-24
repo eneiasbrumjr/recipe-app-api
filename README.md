@@ -6,10 +6,14 @@ application data; Docker Compose defines the local development environment.
 
 ## Status
 
-This is an existing implementation with tests in source. The documentation review
-on 2026-10-23 checked source and configuration; containers and tests were not run.
-The setup commands below follow the checked-in configuration. Runtime,
-dependency, and deployment validation remain pending.
+On 2026-10-24, [CI run 40112570955](https://github.com/eneiasbrumjr/recipe-app-api/actions/runs/40112570955)
+passed the image build, all 64 Django tests, and flake8 for PR head
+`02fad8d66c5dfe60f07f4e4b11944d777e42b4fe`, using GitHub's simulated merge with
+`main`. This evidence applies to that revision; any later commit, including a
+documentation update, needs its own successful run.
+
+Deployment, `collectstatic`, and proxy delivery: **NOT RUN**. Broader dependency
+and security validation remain pending.
 
 ## Implemented in source
 
@@ -69,12 +73,11 @@ docker compose -f docker-compose.yml run --rm app sh -c "python manage.py wait_f
 docker compose -f docker-compose.yml run --rm app sh -c "flake8"
 ```
 
-[The existing workflow](.github/workflows/checks.yml) runs on pushes to `main`,
-including documentation-only pushes. It targets `ubuntu-24.04`, uses the
+[The workflow](.github/workflows/checks.yml) runs on pushes to `main` and on
+pull requests targeting `main` (`opened`, `synchronize`, or `reopened`), including
+documentation-only updates. It targets `ubuntu-24.04`, uses the
 `docker compose` plugin, and pulls public base images without Docker Hub secrets.
-Unauthenticated pulls remain subject to Docker Hub rate limits. The CI configuration
-has been reviewed statically; container builds, tests, and lint still require a
-successful workflow run to establish runtime compatibility.
+Unauthenticated pulls remain subject to Docker Hub rate limits.
 
 ## Repository map
 
