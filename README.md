@@ -70,8 +70,11 @@ docker compose -f docker-compose.yml run --rm app sh -c "flake8"
 ```
 
 [The existing workflow](.github/workflows/checks.yml) runs on pushes to `main`,
-including documentation-only pushes. It uses the legacy `docker-compose` command
-and Docker Hub secrets; its runner, actions, and execution need revalidation.
+including documentation-only pushes. It targets `ubuntu-24.04`, uses the
+`docker compose` plugin, and pulls public base images without Docker Hub secrets.
+Unauthenticated pulls remain subject to Docker Hub rate limits. The CI configuration
+has been reviewed statically; container builds, tests, and lint still require a
+successful workflow run to establish runtime compatibility.
 
 ## Repository map
 
